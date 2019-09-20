@@ -12,11 +12,17 @@ import { EventEmitter } from 'events';
       <div>
         <span>Location: {{ eventdata.location.address }}</span>
         <span>&nbsp;</span>
-        <span>{{ eventdata.location.city }}, {{ eventdata.location.country }}</span>
+        <span
+          >{{ eventdata.location.city }}, {{ eventdata.location.country }}</span
+        >
       </div>
     </div>
   `
 })
 export class EventsThumbnailComponent {
   @Input() eventdata: any;
+  someProperty: any = 'Some value';
+  logFoo() {
+    console.log('goo');
+  }
 }
