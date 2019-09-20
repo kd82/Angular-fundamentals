@@ -14,9 +14,6 @@ import { EventEmitter } from 'events';
         <span>&nbsp;</span>
         <span>{{ eventdata.location.city }}, {{ eventdata.location.country }}</span>
       </div>
-      <button class="btn btn-primary" (click)="handleClickMe()">
-        Click me!
-      </button>
     </div>
   `
 })
