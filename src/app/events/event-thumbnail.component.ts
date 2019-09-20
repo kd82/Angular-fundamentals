@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EventEmitter } from 'events';
 
 @Component({
@@ -11,18 +11,20 @@ import { EventEmitter } from 'events';
       <div>Price: \${{ eventdata.price }}</div>
       <div>
         <span>Location: {{ eventdata.location.address }}</span>
-        <span>&nbsp;</span>
+        <span class="pad-left"></span>
         <span
           >{{ eventdata.location.city }}, {{ eventdata.location.country }}</span
         >
       </div>
     </div>
-  `
+  `,
+  styles: [
+    `
+      .pad-left {margin-left: 10px;}
+      .well div {color:#bbb;}
+    `
+  ]
 })
 export class EventsThumbnailComponent {
   @Input() eventdata: any;
-  someProperty: any = 'Some value';
-  logFoo() {
-    console.log('goo');
-  }
 }
