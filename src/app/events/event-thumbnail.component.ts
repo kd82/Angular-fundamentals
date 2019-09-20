@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-event-thumbnail',
