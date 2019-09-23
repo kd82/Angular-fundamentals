@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
       <div>Date: {{ eventdata?.date }}</div>
       <div>Time: {{ eventdata?.time }}</div>
       <div>Price: \${{ eventdata?.price }}</div>
-      <div *ngIf="eventdata?.location">
+      <div [hidden]="!eventdata?.location">
         <span>Location: {{ eventdata?.location?.address }}</span>
         <span class="pad-left"></span>
         <span
@@ -16,7 +16,7 @@ import { Component, Input } from '@angular/core';
           {{ eventdata?.location?.country }}</span
         >
       </div>
-      <div *ngIf="eventdata?.onlineUrl">
+      <div [hidden]="!eventdata?.onlineUrl">
       Online URL : {{eventdata?.onlineUrl}}
       </div>
     </div>
