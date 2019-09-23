@@ -6,7 +6,12 @@ import { Component, Input } from '@angular/core';
     <div class="well hoverwell thumbnail">
       <h2>{{ eventdata?.name }}</h2>
       <div>Date: {{ eventdata?.date }}</div>
-      <div>Time: {{ eventdata?.time }}</div>
+      <div [ngSwitch]="eventdata?.time">
+        Time: {{ eventdata?.time }}
+        <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+        <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+        <span *ngSwitchDefault>(Normal Start)</span>
+      </div>
       <div>Price: \${{ eventdata?.price }}</div>
       <div [hidden]="!eventdata?.location">
         <span>Location: {{ eventdata?.location?.address }}</span>
@@ -17,7 +22,7 @@ import { Component, Input } from '@angular/core';
         >
       </div>
       <div [hidden]="!eventdata?.onlineUrl">
-      Online URL : {{eventdata?.onlineUrl}}
+        Online URL : {{ eventdata?.onlineUrl }}
       </div>
     </div>
   `,
