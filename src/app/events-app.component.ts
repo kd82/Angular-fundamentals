@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   // tslint:disable-next-line: component-selector
   selector: 'events-app',
   template: `
-  <app-nav></app-nav>
-  <app-events-list></app-events-list>
+    <app-nav></app-nav>
+    <router-outlet></router-outlet>
   `
 })
 export class EventsAppComponent {
