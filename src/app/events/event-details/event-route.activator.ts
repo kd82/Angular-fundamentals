@@ -2,6 +2,7 @@ import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { Inject } from '@angular/core';
 import { EventService } from 'src/app/shared/event.service';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import { CreateEventComponent } from '../create-event.component';
 
 export class EventRouteActivator implements CanActivate {
   path: import ('@angular/router').ActivatedRouteSnapshot[];
@@ -13,7 +14,13 @@ export class EventRouteActivator implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot) {
     const eventExists = !!this.eventService.getEvent(+route.params.id);
-    if (!eventExists) { this.router.navigate(['/404']); }
+    if (!eventExists) {
+      this.router.navigate(['/404']);
+    }
     return eventExists;
+  }
+  canDeactivate(component: CreateEventComponent) {
+    if (!component.isDirty) { return false; }
+    return true;
   }
 }

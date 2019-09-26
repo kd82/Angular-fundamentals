@@ -9,15 +9,12 @@ import { EventService } from './shared/event.service';
 import { ToastrService } from './common/toastr.service';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { RouterModule } from '@angular/router';
-import {appRoutes} from '../routes';
+import { appRoutes } from '../routes';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivator } from './events/event-details/event-route.activator';
 @NgModule({
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes)
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
   declarations: [
     EventsAppComponent,
     EventsListComponent,
@@ -27,7 +24,13 @@ import { EventRouteActivator } from './events/event-details/event-route.activato
     CreateEventComponent,
     Error404Component
   ],
-  providers: [EventService, ToastrService, EventRouteActivator],
+  providers: [
+    EventService,
+    ToastrService,
+    EventRouteActivator
+  ],
   bootstrap: [EventsAppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+

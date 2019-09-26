@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 
 export class CreateEventComponent {
    constructor(@Inject(Router) private router: Router) { }
-
+   isDirty = false;
    cancel() {
      this.router.navigate(['/events']);
    }
