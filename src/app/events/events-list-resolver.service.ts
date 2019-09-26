@@ -1,5 +1,5 @@
 import { Inject } from '@angular/core';
-import { EventService } from './event.service';
+import { EventService } from '../shared/event.service';
 import { Resolve } from '@angular/router';
 import { map } from 'rxjs/operators';
 export class EventListResolver implements Resolve<any> {
