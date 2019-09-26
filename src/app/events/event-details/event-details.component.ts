@@ -9,7 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EventDetailsComponent implements OnInit {
   event: any;
-  constructor(@Inject(EventService) private eventService: EventService,@Inject(ActivatedRoute) private route: ActivatedRoute) {}
+  constructor(
+    @Inject(EventService) private eventService: EventService,
+    @Inject(ActivatedRoute) private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.event = this.eventService.getEvent(+this.route.snapshot.params.id);
