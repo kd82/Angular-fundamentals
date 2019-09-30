@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { ISession, restrictedWords } from 'src/app/shared';
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { FormControl, Validators, FormGroup } from "@angular/forms";
+import { ISession, restrictedWords } from "src/app/shared";
 
 @Component({
-  templateUrl: './create-session.component.html',
-  styleUrls: ['./create-session.component.css'],
+  selector: "create-session",
+  templateUrl: "./create-session.component.html",
+  styleUrls: ["./create-session.component.css"],
   styles: [
     `
       em {
@@ -34,6 +35,8 @@ import { ISession, restrictedWords } from 'src/app/shared';
 })
 export class CreateSessionComponent implements OnInit {
   newSessioForm: FormGroup;
+  @Output() saveNewSession = new EventEmitter();
+  @Output() cancelAddSession = new EventEmitter();
   name: FormControl;
   presenter: FormControl;
   duration: FormControl;
@@ -41,14 +44,14 @@ export class CreateSessionComponent implements OnInit {
   abstract: FormControl;
   constructor() {}
   ngOnInit() {
-    this.name = new FormControl('', Validators.required);
-    this.presenter = new FormControl('', Validators.required);
-    this.duration = new FormControl('', Validators.required);
-    this.level = new FormControl('', Validators.required);
-    this.abstract = new FormControl('', [
+    this.name = new FormControl("", Validators.required);
+    this.presenter = new FormControl("", Validators.required);
+    this.duration = new FormControl("", Validators.required);
+    this.level = new FormControl("", Validators.required);
+    this.abstract = new FormControl("", [
       Validators.required,
       Validators.maxLength(400),
-      restrictedWords(['foo', 'bar'])
+      restrictedWords(["foo", "bar"])
     ]);
     this.newSessioForm = new FormGroup({
       name: this.name,
@@ -69,6 +72,10 @@ export class CreateSessionComponent implements OnInit {
       abstract: formValues.abstract,
       voters: []
     };
-    console.log(session);
+    this.saveNewSession.emit(session);
+  }
+
+  cancel() {
+    this.cancelAddSession.emit();
   }
 }
