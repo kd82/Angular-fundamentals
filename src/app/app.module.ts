@@ -8,7 +8,9 @@ import { Error404Component } from './errors/404.component';
 import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common/index';
 import { appRoutes } from '../routes';
 
+// tslint:disable-next-line: no-string-literal
 const toastr: IToastr = window['toastr'];
+// tslint:disable-next-line: no-string-literal
 const jQuery = window['$'];
 
 import {

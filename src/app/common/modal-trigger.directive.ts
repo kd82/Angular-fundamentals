@@ -3,6 +3,7 @@ import { JQ_TOKEN } from './jQuery.service';
 
 @Directive
 ({
+  // tslint:disable-next-line: directive-selector
   selector: '[modal-trigger]'
 })
 

@@ -27,17 +27,17 @@ import { EventService, ISession } from '../shared';
 })
 export class NavBarComponent {
   searchTerm = '';
+  auth: AuthService;
   foundSessions: ISession[];
   constructor(
-    @Inject(AuthService) private auth: AuthService,
+    @Inject(AuthService) auth: AuthService,
     @Inject(EventService) private eventService: EventService
   ) {}
   searchSessions(searchTerm: string) {
     this.eventService
       .searchSessions(searchTerm)
-      .subscribe(
-        (sessions: ISession[]) =>{
-          this.foundSessions = sessions;
-        });
+      .subscribe((sessions: ISession[]) => {
+        this.foundSessions = sessions;
+      });
   }
 }
