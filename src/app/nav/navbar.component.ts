@@ -27,10 +27,9 @@ import { EventService, ISession } from '../shared';
 })
 export class NavBarComponent {
   searchTerm = '';
-  auth: AuthService;
   foundSessions: ISession[];
   constructor(
-    @Inject(AuthService) auth: AuthService,
+    @Inject(AuthService) private  auth: AuthService,
     @Inject(EventService) private eventService: EventService
   ) {}
   searchSessions(searchTerm: string) {
