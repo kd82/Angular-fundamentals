@@ -1,6 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { SubjectSubscriber } from 'rxjs/internal/Subject';
-
 export let TOASTR_TOKEN = new InjectionToken<IToastr>('toastr');
 
 export interface IToastr {

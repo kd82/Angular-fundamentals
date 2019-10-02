@@ -68,7 +68,6 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProfile(formValues: { firstName: any; lastName: any }) {
-    console.log(this.profileForm.valid);
     if (!this.profileForm.valid) {
       return;
     }

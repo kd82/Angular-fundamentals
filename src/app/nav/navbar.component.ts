@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '../user/auth.service';
+import { EventService, ISession } from '../shared';
 
 @Component({
   selector: 'app-nav',
@@ -25,5 +26,19 @@ import { AuthService } from '../user/auth.service';
   ]
 })
 export class NavBarComponent {
-  constructor(@Inject(AuthService) private auth: AuthService) {}
+  searchTerm = '';
+  foundSessions: ISession[];
+  constructor(
+    @Inject(AuthService) private auth: AuthService,
+    @Inject(EventService) private eventService: EventService
+  ) {}
+  searchSessions(searchTerm: string) {
+    this.eventService
+      .searchSessions(searchTerm)
+      .subscribe(
+        (sessions: ISession[]) =>{
+          this.foundSessions = sessions;
+          console.log(this.foundSessions);
+        });
+  }
 }

@@ -5,10 +5,11 @@ import { RouterModule } from '@angular/router';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
-import { TOASTR_TOKEN, IToastr } from './common/toastr.service';
+import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN } from './common/index';
 import { appRoutes } from '../routes';
 
-declare let toastr: IToastr;
+const toastr: IToastr = window['toastr'];
+const jQuery = window['$'];
 
 import {
   EventsListComponent,
@@ -24,7 +25,6 @@ import {
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-details/create-session.component';
-import { CollapsibleWellComponent } from './common/collapsable-well.component';
 @NgModule({
   imports: [
     BrowserModule,
