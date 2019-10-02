@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
-import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN } from './common/index';
+import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common/index';
 import { appRoutes } from '../routes';
 
 const toastr: IToastr = window['toastr'];
@@ -43,11 +43,14 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr },
+    { provide: JQ_TOKEN, useValue: jQuery },
     EventRouteActivator,
     EventListResolver,
     AuthService
