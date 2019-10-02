@@ -38,7 +38,6 @@ export class NavBarComponent {
       .subscribe(
         (sessions: ISession[]) =>{
           this.foundSessions = sessions;
-          console.log(this.foundSessions);
         });
   }
 }
