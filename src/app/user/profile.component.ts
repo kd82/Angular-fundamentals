@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { TOASTR_TOKEN, IToastr } from '../common/toastr.service';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -36,7 +37,8 @@ export class ProfileComponent implements OnInit {
   private firstName: FormControl;
   constructor(
     @Inject(AuthService) private authService: AuthService,
-    @Inject(Router) private router: Router
+    @Inject(Router) private router: Router,
+    @Inject(TOASTR_TOKEN) private toastr: IToastr
   ) {}
   ngOnInit(): void {
     this.firstName = new FormControl(
@@ -66,6 +68,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProfile(formValues: { firstName: any; lastName: any }) {
+    console.log(this.profileForm.valid);
     if (!this.profileForm.valid) {
       return;
     }
@@ -73,6 +76,6 @@ export class ProfileComponent implements OnInit {
       formValues.firstName,
       formValues.lastName
     );
-    this.router.navigate(['events']);
+    this.toastr.success('Profile Saved Sucessfully', '');
   }
 }
