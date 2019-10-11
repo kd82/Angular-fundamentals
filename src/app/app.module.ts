@@ -22,7 +22,9 @@ import {
   EventRouteActivator,
   EventListResolver,
   SessionListComponent,
-  DurationPipe
+  UpvoteComponent,
+  DurationPipe,
+  VoterService
 } from './events/index';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -45,6 +47,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    UpvoteComponent,
     DurationPipe,
     SimpleModalComponent,
     ModalTriggerDirective
@@ -55,6 +58,7 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     { provide: JQ_TOKEN, useValue: jQuery },
     EventRouteActivator,
     EventListResolver,
+    VoterService,
     AuthService
   ],
   bootstrap: [EventsAppComponent]
