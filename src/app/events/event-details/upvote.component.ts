@@ -3,7 +3,8 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: "upvote",
+  // tslint:disable-next-line: component-selector
+  selector: 'upvote',
   styleUrls: ['upvote.component.css'],
   template: `
     <div class="votingWidgetContainer pointable" (click)="onClick()">
@@ -24,7 +25,7 @@ export class UpvoteComponent {
     this.iconColor = val ? 'red' : 'white';
   }
   @Output() vote = new EventEmitter();
-  private iconColor: string;
+  iconColor: string;
   onClick() {
     this.vote.emit({});
   }
