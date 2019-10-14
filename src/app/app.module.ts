@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav/navbar.component';
 import { Error404Component } from './errors/404.component';
 import { TOASTR_TOKEN, IToastr, CollapsibleWellComponent, JQ_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common/index';
 import { appRoutes } from '../routes';
+import { HttpClientModule } from '@angular/common/http';
 
 // tslint:disable-next-line: no-string-literal
 const toastr: IToastr = window['toastr'];
@@ -35,7 +36,8 @@ import { CreateSessionComponent } from './events/event-details/create-session.co
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   declarations: [
     EventsAppComponent,
