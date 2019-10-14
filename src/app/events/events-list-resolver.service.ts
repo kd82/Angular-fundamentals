@@ -7,7 +7,7 @@ export class EventListResolver implements Resolve<any> {
     route: import ('@angular/router').ActivatedRouteSnapshot,
     state: import ('@angular/router').RouterStateSnapshot
   ) {
-    return this.eventService.getEvents().pipe(map(events => events));
+    return this.eventService.getEvents();
   }
   constructor(@Inject(EventService) private eventService: EventService) {}
 }
