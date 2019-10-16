@@ -10,7 +10,7 @@ export class VoterService {
   constructor(@Inject(HttpClient) private http: HttpClient) {
 
   }
-  deleteVoter(eventId:number, session: ISession, voterName: string) {
+  deleteVoter(eventId: number, session: ISession, voterName: string) {
     session.voters = session.voters.filter(voter => voter !== voterName);
     const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
     this.http.delete(url).pipe(catchError(this.handleError('addVoter'))).subscribe();

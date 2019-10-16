@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { AuthService } from './user/auth.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -9,5 +10,9 @@ import { Component } from '@angular/core';
   `
 })
 export class EventsAppComponent {
-  title = 'ng-fundamentals';
+    constructor(@Inject(AuthService) private auth: AuthService) {}
+
+    ngOnInit() {
+      this.auth.checkAuthenticationStatus();
+    }
 }
