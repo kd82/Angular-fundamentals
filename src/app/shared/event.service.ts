@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter, Inject } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { IEvent, ISession } from '../events';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 @Injectable()
 export class EventService {
@@ -317,45 +317,28 @@ export class EventService {
     return this.http.get<IEvent[]>('/api/events')
           .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
   }
+
+  getEvent(id: number): Observable<IEvent> {
+    return this.http.get<IEvent>('/api/events/' + id)
+    .pipe(catchError(this.handleError<IEvent>('getEvent')));
+  }
+
+  saveEvent(event: IEvent) {
+    const options = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+    return this.http.post<IEvent>('/api/events', event, options)
+    .pipe(catchError(this.handleError<IEvent>('saveEvent')));
+  }
+
+
+  searchSessions(searchTerm: string): Observable<ISession[]> {
+    return this.http.get<ISession[]>('/api/sessions/search?search=' + searchTerm)
+    .pipe(catchError(this.handleError<ISession[]>('searchSessions')));
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.log(error);
       return of(result as T);
     };
-  }
-  getEvent(id: number): IEvent {
-    return this.EVENTS.find(event => event.id === id);
-  }
-
-  saveEvent(event: IEvent) {
-    event.id = 999;
-    event.sessions = [];
-    this.EVENTS.push(event);
-  }
-
-  updateEvent(event: IEvent) {
-    const index = this.EVENTS.findIndex(x => x.id === event.id);
-    this.EVENTS[index] = event;
-  }
-
-  searchSessions(searchTerm: string) {
-    const term = searchTerm.toLocaleLowerCase();
-    let results: ISession[] = [];
-
-    this.EVENTS.forEach(event => {
-      let matchingSessions = event.sessions.filter(
-        session => session.name.toLocaleLowerCase().indexOf(term) > -1
-      );
-      matchingSessions = matchingSessions.map((session: any) => {
-        session.eventId = event.id;
-        return session;
-      });
-      results = results.concat(matchingSessions);
-    });
-    const emitter = new EventEmitter(true);
-    setTimeout(() => {
-      emitter.emit(results);
-    }, 100);
-    return emitter;
   }
 }
