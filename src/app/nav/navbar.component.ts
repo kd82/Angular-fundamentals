@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../user/auth.service';
-import { EventService, ISession } from '../shared';
+import { EventService, ISession, IEvent } from '../shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -25,13 +26,20 @@ import { EventService, ISession } from '../shared';
     `
   ]
 })
-export class NavBarComponent {
-  searchTerm = '';
-  foundSessions: ISession[];
+export class NavBarComponent implements OnInit {
   constructor(
     @Inject(AuthService) private  auth: AuthService,
     @Inject(EventService) private eventService: EventService
   ) {}
+  searchTerm = '';
+  foundSessions: ISession[];
+  events: IEvent[];
+  ngOnInit(): void {
+    this.eventService.getEvents().subscribe((data) => {
+      this.events = data;
+    }
+    );
+  }
   searchSessions(searchTerm: string) {
     this.eventService
       .searchSessions(searchTerm)
