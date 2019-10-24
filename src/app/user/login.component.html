@@ -9,7 +9,7 @@
   >
     <div class="form-group">
       <label for="userName">User Name:</label>
-      <em *ngIf="loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched || mouseoverLogin)" >Required</em>
+      <em *ngIf="loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched || mouseOverLogin)" >Required</em>
       <input
         id="userName"
         (ngModel)="(userName)"
@@ -22,7 +22,7 @@
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseoverLogin)" >Required</em>
+      <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseOverLogin)" >Required</em>
       <input
         id="password"
         type="password"
@@ -33,7 +33,7 @@
         placeholder="Password..."
       />
     </div>
-    <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+    <span (mouseenter)="mouseOverLogin='true'" (mouseleave)="mouseOverLogin='false'">
     <button
       type="submit"
       class="btn btn-primary"

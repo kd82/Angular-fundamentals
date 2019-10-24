@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../user/auth.service';
 import { EventService, ISession, IEvent } from '../shared';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -27,8 +26,8 @@ import { Observable } from 'rxjs';
   ]
 })
 export class NavBarComponent implements OnInit {
+  public auth: AuthService;
   constructor(
-    @Inject(AuthService) private  auth: AuthService,
     @Inject(EventService) private eventService: EventService
   ) {}
   searchTerm = '';
