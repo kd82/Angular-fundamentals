@@ -1,12 +1,11 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { SessionListComponent } from './session-list.component';
-import { DebugElement } from '@angular/core';
+import { DebugElement, Component } from '@angular/core';
 import { AuthService } from 'src/app/user/auth.service';
 import { VoterService } from './voter.service';
-import { UpvoteComponent } from './upvote.component';
 import { DurationPipe } from 'src/app/shared';
 import { By } from '@angular/platform-browser';
-import { CollapsibleWellComponent } from 'src/app/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('SessionListComponent', () => {
   // tslint:disable-next-line: one-variable-per-declaration
@@ -24,12 +23,12 @@ describe('SessionListComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [],
-      declarations: [SessionListComponent, UpvoteComponent, DurationPipe, CollapsibleWellComponent],
+      declarations: [SessionListComponent, DurationPipe ],
       providers: [
         { provide: AuthService, useValue: mockAuthService },
         { provide: VoterService, useValue: mockVoterService }
       ],
-      schemas: []
+      schemas: [NO_ERRORS_SCHEMA]
     });
   }));
   beforeEach(() => {
